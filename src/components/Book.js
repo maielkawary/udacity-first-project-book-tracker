@@ -1,5 +1,5 @@
 const Book = ({book, moveToShelf}) => {
-    
+    let cond = book.imageLinks.smallThumbnail;
     return(<li key={book.id}>
         <div className="book">
         <div className="book-top">
@@ -8,12 +8,12 @@ const Book = ({book, moveToShelf}) => {
             style={{
                 width: 128,
                 height: 193,
-                backgroundImage:
+                backgroundImage:cond===null?`''`:
                 `url(${book.imageLinks.smallThumbnail})`,
             }}
             ></div>
             <div className="book-shelf-changer">
-            <select id={book.id} defaultValue={'none'} onChange={(event)=>{moveToShelf(book, event.target.value)}}>
+            <select id={book.id} defaultValue='none' value={book.shelf} onChange={(event)=>{moveToShelf(book, event.target.value)}}>
                 <option value="none" disabled>
                 Move to...
                 </option>
