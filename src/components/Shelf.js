@@ -12,7 +12,7 @@ const Shelf = ({ moveToShelf, booksState, books, shelfName}) => {
                return(book.shelf === booksState);
                 }).map(book => {
                 return(
-                  <Book moveToShelf={moveToShelf} book={book}/>
+                  <Book key={book.id} moveToShelf={moveToShelf} book={book}/>
                 );
             })}
           </ol>
