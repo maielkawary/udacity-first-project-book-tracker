@@ -33,21 +33,33 @@ const App = () => {
     handleBooksSearch(searchInput);
   }
 
-  useEffect(() => {
+   useEffect(() => {
     
       BooksAPI.search(searchInput).then((res) => {
+        if(res && !res.error){
         setBooksFromSearch(res);
+        
+      }else{
+        setBooksFromSearch([]);
+      }
       })
+      
     }
     
-  ,[searchInput, booksFromSearch]);
+  ,[booksFromSearch]); 
 
   
 
   const handleBooksSearch = (search) => {
      BooksAPI.search(search).then((res) => {
+      if(res && !res.error){
         setBooksFromSearch(res);
-        console.log(res)
+        
+      }else{
+        setBooksFromSearch([]);
+      }
+      console.log(res.error)
+        
     })
   }
 
