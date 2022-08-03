@@ -9,6 +9,7 @@ const App = () => {
   const [books, setBooks] = useState([]);
   const [booksFromSearch, setBooksFromSearch] = useState([]);
 
+
   useEffect(() => {
     BooksAPI.getAll().then((res) => {
       setBooks(res);
@@ -34,13 +35,19 @@ const App = () => {
 
   useEffect(() => {
     
-    searchInput !=='' &&console.log(searchInput);
+      BooksAPI.search(searchInput).then((res) => {
+        setBooksFromSearch(res);
+      })
+    }
     
-  },[searchInput]);
+  ,[searchInput, booksFromSearch]);
 
-  const handleBooksSearch = async(search) => {
-    await BooksAPI.search(search).then((res) => {
-      setBooksFromSearch(res);
+  
+
+  const handleBooksSearch = (search) => {
+     BooksAPI.search(search).then((res) => {
+        setBooksFromSearch(res);
+        console.log(res)
     })
   }
 
